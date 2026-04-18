@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VERSION=$1 # v0.11.4
+VERSION=$1 # v0.12.1
 
 sudo apt-get install ninja-build gettext cmake curl build-essential git
 
@@ -12,5 +12,6 @@ if [ -n "$VERSION" ]; then
   git checkout $VERSION
 fi
 
+make distclean
 make CMAKE_BUILD_TYPE=Release
 sudo make install

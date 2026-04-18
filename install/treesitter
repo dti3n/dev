@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -e
+
+LUA_VERSION=5.5
+TREE="$HOME/.local/share/nvim/rocks"
+lang="$1"
+
+luarocks \
+    --lua-version=$LUA_VERSION \
+    --tree=$TREE \
+    install tree-sitter-$lang
