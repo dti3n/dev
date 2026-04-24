@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+TREE="$HOME/.local/share/nvim/rocks"
+
+SITE_PARSER="$HOME/.local/share/nvim/site/parser"
+SITE_QUERIES="$HOME/.local/share/nvim/site/queries"
+
+echo "cleaning parser & queries directory"
+rm -rdf "$SITE_PARSER"
+rm -rdf "$SITE_QUERIES"
+echo
+
+echo "cleaning all tree-sitter rocks in: $TREE"
+echo
+
+rocks=$(luarocks list --tree="$TREE" | grep -oE 'tree-sitter-[a-zA-Z0-9_]+' | sort -u)
+
+if [ -z "$rocks" ]; then
+    echo "nothing to clean."
+    exit 0
+fi
+
+for rock in $rocks; do
+    echo "removing $rock"
+    luarocks --tree="$TREE" remove "$rock" || true
+done
+
+echo
+
+echo "all tree-sitter rocks removed."
