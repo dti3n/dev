@@ -2,7 +2,7 @@
 
 set -e
 
-LUA_VERSION=5.5
+LUA_VERSION=$(lua -v 2>&1 | grep -oE '[0-9]+\.[0-9]+' | head -n1)
 TREE="$HOME/.local/share/nvim/rocks"
 lang="$1"
 
