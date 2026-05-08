@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+cd $HOME
+git clone --recursive https://github.com/aseprite/aseprite.git
+git checkout v1.3.17.2
+cd aseprite
+./build.sh
